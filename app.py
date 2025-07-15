@@ -4,6 +4,7 @@ from groq import Groq
 
 import os
 
+# os.environ['GROQ_API_KEY'] = 
 app = Flask(__name__)
 
 @app.route("/",methods=["GET","POST"])
@@ -44,7 +45,7 @@ def deepseek():
 def deepseek_reply():
     q = request.form.get("q")
     # load model
-    client = deepseek()
+    client = Groq()
     completion = client.chat.completions.create(
         model="deepseek-r1-distill-llama-70b",
         messages=[
