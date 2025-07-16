@@ -1,11 +1,15 @@
 from flask import Flask, render_template, request
 import joblib
 from groq import Groq
+from dotenv import load_dotenv
 import requests
 
 import os
 
-# os.environ['GROQ_API_KEY'] = 
+load_dotenv()
+#groq_api_key =  os.getenv('GROQ_API_KEY')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+
 app = Flask(__name__)
 
 @app.route("/",methods=["GET","POST"])
