@@ -70,6 +70,29 @@ def prediction():
     pred = model.predict([[q]])
     return(render_template("prediction.html",r=pred))
 
+
+@app.route("/telegram",methods=["GET","POST"])
+def telegram():
+
+    domain_url = 'https://dbss2.onrender.com'
+
+    #The following line is used to delete the existing webhook URl for the Telegram bot
+    delete_webhook_url = f"https://api.telegram.org/bot%7Bgroq_telegram_token%7D/deleteWebhook"
+    requests.post(delete_webhook_url, json={"url": domain_url, "drop_pending_updates": True})
+
+    #The following line is used to set the webhook for Telegram
+    set_webhook_url = f"https://api.telegram.org/bot%7Bgroq_telegram_token%7D/setWebhook?url={domain_url}/webhook"
+    webhook_response = requests.post(set_webhook_url, json=["url": domain_url, "drop_pending_updates": True])
+
+    if webhook_response.status_code == 200:
+        #set status message
+        status = "The telegram bot is running. Please check with the telegram bot. @dsaisly.bot"
+        else:
+            status = "Failed to start the telegram bot. Please check the logs"
+
+    return(render_template("telegram.html", status=status))
+
+
 if __name__ == "__main__":
     app.run()
 
