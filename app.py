@@ -82,7 +82,7 @@ def telegram():
     domain_url = 'https://dbss2.onrender.com'
 
     #The following line is used to delete the existing webhook URl for the Telegram bot
-    delete_webhook_url = f"https://api.telegram.org/bot%7Bgroq_telegram_token%7D/deleteWebhook"
+    delete_webhook_url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/deleteWebhook"
     requests.post(delete_webhook_url, json={"url": domain_url, "drop_pending_updates": True})
 
     #The following line is used to set the webhook for Telegram
@@ -95,7 +95,7 @@ def telegram():
     else:
         status = "Failed to start the telegram bot. Please check the logs."
     
-
+    return status
 
 if __name__ == "__main__":
     app.run()
