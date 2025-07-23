@@ -22,7 +22,15 @@ def index():
 @app.route("/main",methods=["GET","POST"])
 def main():
     q = request.form.get("q")
-    # db
+    # db - insert
+
+
+
+
+
+
+
+
     return(render_template("main.html"))
 
 
