@@ -14,8 +14,31 @@ TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 app = Flask(__name__)
 
 
-@app.route("/",methods=["GET","POST"])
+@app.route("/user_log",methods=["GET","POST"])
 def index():
+
+    conn = sqlite3.connect('user.db')
+    c = conn.cursor()
+    c.execute('''select * from user''')
+    r=""
+    for row in c:
+    print(row)
+    r = r + str(row)
+    c.close()
+    conn.close()
+
+    return(render_template("index.html"))
+
+@app.route("/delete_log",methods=["GET","POST"])
+def index():
+
+    conn = sqlite3.connect('user.db')
+    c = conn.cursor()
+    c.execute('DELETE FROM user',);
+    conn.commit()
+    c.close()
+    conn.close()
+    
     return(render_template("index.html"))
 
 
@@ -23,13 +46,12 @@ def index():
 def main():
     q = request.form.get("q")
     # db - insert
-
-
-
-
-
-
-
+    conn = sqlite3.connect('user.db')
+    c = conn.cursor()
+    c.execute('INSERT INTO user (name,timestamp) VALUES(?,?)',(name,t))
+    conn.commit()
+    c.close()
+    conn.close()
 
     return(render_template("main.html"))
 
@@ -163,6 +185,11 @@ def stop_telegram():
         status = "Failed to stop the telegram bot. Please check the logs."
     
     return(render_template("telegram.html", status=status))
+
+
+@app.route('/sepia', methods=['GET', 'POST'])
+def sepia():
+    return render_template("sepia_hf.html")
 
 
 
