@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 
 @app.route("/user_log",methods=["GET","POST"])
-def index():
+def user_log():
 
     conn = sqlite3.connect('user.db')
     c = conn.cursor()
@@ -30,7 +30,7 @@ def index():
     return(render_template("index.html"))
 
 @app.route("/delete_log",methods=["GET","POST"])
-def index():
+def delete_log():
 
     conn = sqlite3.connect('user.db')
     c = conn.cursor()
