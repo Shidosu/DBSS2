@@ -22,8 +22,8 @@ def index():
     c.execute('''select * from user''')
     r=""
     for row in c:
-    print(row)
-    r = r + str(row)
+        print(row)
+        r = r + str(row)
     c.close()
     conn.close()
 
