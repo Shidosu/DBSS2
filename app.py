@@ -196,7 +196,7 @@ def delete_log():
     return(render_template("index.html"))
 
 
-@app.route('/sepia', methods=['GET', 'POST'])
+@app.route('/sepia_hf', methods=['GET', 'POST'])
 def sepia():
     return render_template("sepia_hf.html")
 
