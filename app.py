@@ -23,7 +23,8 @@ def home():
 
 @app.route("/main",methods=["GET","POST"])
 def main():
-    q = request.form.get("q")
+    name = request.form.get("q")  # or use the correct field name from your form
+    t = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # db - insert
     conn = sqlite3.connect('user.db')
     c = conn.cursor()
