@@ -180,7 +180,7 @@ def user_log():
     c.close()
     conn.close()
 
-    return(render_template("index.html"))
+    return(render_template("user_log.html", r=r))
 
 
 @app.route("/delete_log",methods=["GET","POST"])
@@ -193,7 +193,7 @@ def delete_log():
     c.close()
     conn.close()
     
-    return(render_template("index.html"))
+    return(render_template("delete_log.html", message"="User log deleted successfully."))
 
 
 @app.route('/sepia_hf', methods=['GET', 'POST'])
