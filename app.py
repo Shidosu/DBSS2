@@ -193,7 +193,7 @@ def delete_log():
     c.close()
     conn.close()
     
-    return(render_template("delete_log.html", message"="User log deleted successfully."))
+    return(render_template("delete_log.html", message="User log deleted successfully."))
 
 
 @app.route('/sepia_hf', methods=['GET', 'POST'])
